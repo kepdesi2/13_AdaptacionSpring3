@@ -2,29 +2,39 @@ package com.curso.service;
 
 import java.util.List;
 
-import com.curso.domain.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.curso.domain.Product;
+import com.curso.repository.ProductDao;
+
+
+
+@Component
 public class SimpleProductManager implements ProductManager {
 
     private static final long serialVersionUID = 1L;
 
-    private List<Product> products;
+    @Autowired
+    private ProductDao productDao;
+
+    public void setProductDao(ProductDao productDao) {
+        this.productDao = productDao;
+    }
 
     public List<Product> getProducts() {
-        return products; 
+        return productDao.getProductList();
     }
 
     public void increasePrice(int percentage) {
-    	if (products != null) {
+        List<Product> products = productDao.getProductList();
+        if (products != null) {
             for (Product product : products) {
                 double newPrice = product.getPrice().doubleValue() * 
                                     (100 + percentage)/100;
                 product.setPrice(newPrice);
+                productDao.saveProduct(product);
             }
         }
-    }
-	
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 }
