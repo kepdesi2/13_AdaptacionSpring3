@@ -32,6 +32,16 @@
     	<version>4.2.5.RELEASE</version>
 
     </dependency>
+    <dependency>
+    	<groupId>javax.servlet.jsp.jstl</groupId>
+    	<artifactId>jstl-api</artifactId>
+    	<version>1.2</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.taglibs</groupId>
+    	<artifactId>taglibs-standard-impl</artifactId>
+    	<version>1.2.5</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>13_AdaptacionSpring3</finalName>
